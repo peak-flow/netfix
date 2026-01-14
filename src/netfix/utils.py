@@ -49,12 +49,12 @@ def run_cmd(cmd: str | list[str], timeout: int = 30, sudo: bool = False) -> Comm
 
 def ping(host: str, count: int = 1, timeout: int = 5) -> CommandResult:
     """Ping a host."""
-    return run_cmd(f"ping -c {count} -t {timeout} {host}", timeout=timeout + 5)
+    return run_cmd(["ping", "-c", str(count), "-t", str(timeout), host], timeout=timeout + 5)
 
 
 def dig(domain: str, record_type: str = "A") -> CommandResult:
     """DNS lookup using dig."""
-    return run_cmd(f"dig +short {record_type} {domain}", timeout=10)
+    return run_cmd(["dig", "+short", record_type, domain], timeout=10)
 
 
 def get_default_gateway() -> str | None:

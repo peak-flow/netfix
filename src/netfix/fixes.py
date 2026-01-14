@@ -31,7 +31,7 @@ def flush_dns() -> FixResult:
 
 def renew_dhcp(interface: str = "en0") -> FixResult:
     """Renew DHCP lease on interface."""
-    result = run_cmd(f"ipconfig set {interface} DHCP")
+    result = run_cmd(["ipconfig", "set", interface, "DHCP"])
     return FixResult(
         name="Renew DHCP",
         success=result.success,
